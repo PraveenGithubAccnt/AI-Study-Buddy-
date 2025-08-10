@@ -8,7 +8,7 @@ import {
 } from 'react-native';
 import { onAuthStateChanged, signOut } from 'firebase/auth';
 import { useRouter } from 'expo-router';
-import { auth, db } from '../api/firebase';
+import { auth, db } from '../../api/firebase';
 import { doc, getDoc } from "firebase/firestore";
 
 const DashboardScreen = () => {
@@ -17,7 +17,7 @@ const DashboardScreen = () => {
   const [loading, setLoading] = useState(true);
 
   // Check if user is authenticated
-  useEffect(() => {
+    useEffect(() => {
   const unsubscribe = onAuthStateChanged(auth, async (currentUser) => {
     if (currentUser) {
       try {
@@ -33,18 +33,20 @@ const DashboardScreen = () => {
         console.log('Error fetching user data:', error);
       }
     } else {
-      setUser(null);
+      // Not logged in? Redirect them
+      router.replace('/LoginScreen');
     }
     setLoading(false);
   });
 
-  return () => unsubscribe(); 
-}, []);
+  return () => unsubscribe();
+}, [router]);
+
 
 
   const handleLogout = async () => {
     await signOut(auth);
-    router.replace('/');; // Redirect to landing page after logout
+    router.replace('/');
   };
 
   // Loading state
