@@ -23,7 +23,7 @@ const LoginScreen = () => {
   const handleLogin = async () => {
     try {
       await signInWithEmailAndPassword(auth, email, password);
-      router.replace("/Dashboard");
+      router.replace("/(tabs)/Home");
     } catch (err) {
       console.warn("Login error:", err); // for debugging
       setError("Invalid email or password. Please try again.");
