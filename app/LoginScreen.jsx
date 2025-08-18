@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import {
   View,
   Text,
@@ -40,7 +40,7 @@ const LoginScreen = () => {
           contentContainerStyle={{
             flexGrow: 1,
             justifyContent: "center",
-            paddingHorizontal: 25,
+            paddingHorizontal: 45,
             paddingBottom: 60 
 
           }}
